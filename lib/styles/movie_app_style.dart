@@ -16,4 +16,11 @@ class MovieAppStyle {
       fontFamily: 'Avenir',
       letterSpacing: 0.5,
       color: MovieAppColors.lightTextColor);
+
+  static const dark_style_m = const TextStyle(
+      fontSize: MovieAppDimens.font_size_18,
+      fontWeight: FontWeight.w800,
+      fontFamily: 'Avenir',
+      letterSpacing: 0.5,
+      color: MovieAppColors.darkTextColor);
 }

@@ -19,10 +19,7 @@ class _LoginViewState extends State<LoginView> {
           color: MovieAppColors.secondaryColor,
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.only(
-                  top: MovieAppDimens.stack_40,
-                  left: MovieAppDimens.inline_20,
-                  right: MovieAppDimens.inline_20),
+              padding: EdgeInsets.all(MovieAppDimens.stack_20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
