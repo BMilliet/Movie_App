@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_app_buttons.dart';
+import 'package:movie_app/infra/api.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
 
 class LoginView extends StatefulWidget {
-  LoginView({Key key}) : super(key: key);
-
   _LoginViewState createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
+  final _keyFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
         margin: EdgeInsets.only(bottom: MovieAppDimens.stack_40),
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(MovideAppTexts.movieDbLogo),
+                image: AssetImage(MovideAppTexts.movieDb_Logo),
                 fit: BoxFit.fill)));
   }
 
@@ -54,10 +55,11 @@ class _LoginViewState extends State<LoginView> {
     return Container(
       margin: EdgeInsets.only(top: MovieAppDimens.stack_80),
       child: TextField(
+        controller: _keyFieldController,
         style: MovieAppStyle.light_style_m,
         decoration: InputDecoration(
           labelStyle: MovieAppStyle.light_style_m,
-          labelText: 'MovieDB key',
+          labelText: MovideAppTexts.key_label,
           fillColor: Colors.white,
         ),
         onSubmitted: (text) {
@@ -83,7 +85,7 @@ class _LoginViewState extends State<LoginView> {
         ));
   }
 
-  void _login() {
-    print('login');
+  void _login() async {
+    await Api().search(_keyFieldController.text);
   }
 }
