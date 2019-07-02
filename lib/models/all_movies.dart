@@ -9,5 +9,6 @@ class AllMovies {
     var list = json['results'] as List;
     List<Movie> movieList = list.map((i) => Movie.fromJson(i)).toList();
     return AllMovies(movies: movieList);
+    //test
   }
 }
