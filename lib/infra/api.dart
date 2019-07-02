@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:movie_app/models/json_decode.dart';
+import 'package:movie_app/infra/json_decode.dart';
 
 class Api {
   Api();
