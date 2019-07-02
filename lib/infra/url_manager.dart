@@ -1,5 +1,3 @@
-enum TimeOption { day, week }
-
 class UrlManager {
   final _baseUrl = 'https://api.themoviedb.org/';
   final _api_version = '3/';
@@ -10,12 +8,12 @@ class UrlManager {
 
   UrlManager();
 
-  String trendingMovieUrl(String key, TimeOption time) {
+  String trendingMovieUrl(String key) {
     return _baseUrl +
         _api_version +
         _category +
         _option +
-        time.toString() +
+        _time +
         _key_prefix +
         key;
   }

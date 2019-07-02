@@ -86,6 +86,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _login() async {
-    await Api().search(_keyFieldController.text);
+    await Api().request(_keyFieldController.text);
   }
 }

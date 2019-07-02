@@ -1,24 +1,25 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movie_app/infra/url_manager.dart';
+import 'package:movie_app/models/movie.dart';
 
 class Api {
   Api();
 
-  search(String key) async {
-    //http.Response response = await http.get(buildUrl(key));
-    //return decode(response);
+  request(String key) async {
+    http.Response response = await http.get(UrlManager().trendingMovieUrl(key));
+    return decode(response);
   }
 
   decode(http.Response response) {
     if (_isValidStatusCode(response.statusCode)) {
       var decoded = json.decode(response.body);
-      print(decoded);
-      // List<Video> videos = decoded['items'].map<Video>((map) {
-      //   return Video.fromJson(map);
-      // }).toList();
-      // return videos;
+      List<Movie> movies = decoded['results'].map<Movie>((map) {
+        return Movie.fromJson(map);
+      }).toList();
+      return movies;
     } else {
-      throw Exception('Failed to load videos');
+      print('Failed to load videos');
     }
   }
 
