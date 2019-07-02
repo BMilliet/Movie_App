@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_app_buttons.dart';
 import 'package:movie_app/infra/api.dart';
 import 'package:movie_app/infra/url_manager.dart';
-import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
@@ -40,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
   _movieDbLogo() {
     return Container(
         width: 180,
-        height: 80,
+        height: 70,
         margin: EdgeInsets.only(bottom: MovieAppDimens.stack_40),
         decoration: BoxDecoration(
             image: DecorationImage(
