@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_app_buttons.dart';
 import 'package:movie_app/infra/api.dart';
+import 'package:movie_app/infra/url_manager.dart';
+import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
@@ -86,6 +88,8 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _login() async {
-    await Api().request(_keyFieldController.text);
+    var key = _keyFieldController.text;
+    var url = UrlManager().trendingMovieUrl(key);
+    await Api().request(url);
   }
 }
