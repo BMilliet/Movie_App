@@ -12,6 +12,7 @@ class Movie {
       this.poster_path,
       this.vote_average});
 
+  @override
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
         id: json['id'],

@@ -1,5 +1,7 @@
 import 'package:http/http.dart' as http;
-import 'package:movie_app/infra/json_decode.dart';
+import 'dart:convert';
+
+import 'package:movie_app/exceptions/connection_exception.dart';
 
 class Api {
   Api();
@@ -7,10 +9,10 @@ class Api {
   request(String url) async {
     http.Response response = await http.get(url);
     if (_isValidStatusCode(response.statusCode)) {
-      var movies = JsonDecode().decode(response.body);
-      return movies;
+      var decodedJson = json.decode(response.body);
+      return decodedJson;
     } else {
-      print('Failed to load videos');
+      throw ConnectionException();
     }
   }
 
