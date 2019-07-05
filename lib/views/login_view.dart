@@ -14,6 +14,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final _keyFieldController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,20 +56,25 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _textField() {
     return Container(
-      margin: EdgeInsets.only(top: MovieAppDimens.stack_80),
-      child: TextField(
-        controller: _keyFieldController,
-        style: MovieAppStyle.light_style_m,
-        decoration: InputDecoration(
-          labelStyle: MovieAppStyle.light_style_m,
-          labelText: MovideAppTexts.key_label,
-          fillColor: Colors.white,
-        ),
-        onSubmitted: (text) {
-          print(text);
-        },
-      ),
-    );
+        margin: EdgeInsets.only(top: MovieAppDimens.stack_80),
+        child: Form(
+          key: _formKey,
+          child: TextFormField(
+            controller: _keyFieldController,
+            validator: (value) {
+              if (value.trim().isEmpty || value.trim() == null) {
+                _keyFieldController.clear();
+                return MovideAppTexts.form_error;
+              }
+            },
+            style: MovieAppStyle.light_style_m,
+            decoration: InputDecoration(
+              labelStyle: MovieAppStyle.light_style_m,
+              labelText: MovideAppTexts.key_label,
+              fillColor: Colors.white,
+            ),
+          ),
+        ));
   }
 
   Widget _loginButton() {
@@ -89,14 +95,17 @@ class _LoginViewState extends State<LoginView> {
 
   void _login() async {
     var key = _keyFieldController.text;
-    var url = UrlManager().trendingMovieUrl(key);
 
-    try {
-      var decodedJson = await Api().request(url);
-      AllMovies movies = new AllMovies.fromJson(decodedJson);
-      print(movies);
-    } catch (exception) {
-      print(exception);
+    if (_formKey.currentState.validate()) {
+      var url = UrlManager().trendingMovieUrl(key);
+
+      try {
+        var decodedJson = await Api().request(url);
+        AllMovies movies = new AllMovies.fromJson(decodedJson);
+        print(movies);
+      } catch (exception) {
+        print(exception);
+      }
     }
   }
 }
