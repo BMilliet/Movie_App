@@ -6,6 +6,7 @@ import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
+import 'package:movie_app/views/main_view.dart';
 
 class LoginView extends StatefulWidget {
   _LoginViewState createState() => _LoginViewState();
@@ -19,22 +20,26 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          color: MovieAppColors.secondaryColor,
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.all(MovieAppDimens.stack_20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  _movieDbLogo(),
-                  _infoText(),
-                  _textField(),
-                  _loginButton()
-                ],
-              ),
-            ),
-          )),
+      body: StreamBuilder(
+          stream: _loginBloc.allMovies,
+          builder: (context, snapshot) {
+            return Container(
+                color: MovieAppColors.secondaryColor,
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.all(MovieAppDimens.stack_20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        _movieDbLogo(),
+                        _infoText(),
+                        _textField(),
+                        _loginButton()
+                      ],
+                    ),
+                  ),
+                ));
+          }),
     );
   }
 
@@ -95,6 +100,16 @@ class _LoginViewState extends State<LoginView> {
 
   void _login() async {
     var key = _keyFieldController.text;
-    if (_formKey.currentState.validate()) {}
+    if (_formKey.currentState.validate()) {
+      var movies = await _loginBloc.makeRequest(key);
+      _goToMainView(movies);
+    }
+  }
+
+  void _goToMainView(AllMovies movies) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MainView(movies)),
+    );
   }
 }
