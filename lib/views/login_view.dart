@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/blocs/login_bloc.dart';
 import 'package:movie_app/components/movie_app_buttons.dart';
-import 'package:movie_app/infra/api.dart';
-import 'package:movie_app/infra/url_manager.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
@@ -13,6 +12,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final _loginBloc = LoginBloc();
   final _keyFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -95,17 +95,6 @@ class _LoginViewState extends State<LoginView> {
 
   void _login() async {
     var key = _keyFieldController.text;
-
-    if (_formKey.currentState.validate()) {
-      var url = UrlManager().trendingMovieUrl(key);
-
-      try {
-        var decodedJson = await Api().request(url);
-        AllMovies movies = new AllMovies.fromJson(decodedJson);
-        print(movies);
-      } catch (exception) {
-        print(exception);
-      }
-    }
+    if (_formKey.currentState.validate()) {}
   }
 }
