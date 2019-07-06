@@ -9,12 +9,25 @@ class UrlManager {
   UrlManager();
 
   String trendingMovieUrl(String key) {
-    return _baseUrl +
-        _api_version +
-        _category +
-        _option +
-        _time +
-        _key_prefix +
-        key;
+    var _base = buildUrl([_baseUrl, _api_version, _category, _option]);
+    var _urlWithParameters = addUrlParameters(_base, [_time]);
+    return _urlWithParameters + _key_prefix + key;
+  }
+
+  String buildUrl(List<String> elements) {
+    var url = '';
+    for (var element in elements) {
+      element += '/';
+      url += element;
+    }
+    return url;
+  }
+
+  String addUrlParameters(String baseUrl, List<String> parameters) {
+    for (var parameter in parameters) {
+      parameter += '?';
+      baseUrl += parameter;
+    }
+    return baseUrl;
   }
 }
