@@ -94,17 +94,16 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _login() async {
-    var key = _keyFieldController.text;
-    if (_formKey.currentState.validate()) {
-      var movies = await _loginBloc.makeRequest(key);
+    _loginBloc.loginAction(
+        textField: _keyFieldController,
+        formKey: _formKey,
+        onSuccess: _goToMainView,
+        onFail: _cleanFieldAndShowError);
+  }
 
-      if (_loginBloc.isValidAllMovies(movies)) {
-        _goToMainView(movies);
-      } else {
-        _keyFieldController.clear();
-        _formKey.currentState.validate();
-      }
-    }
+  void _cleanFieldAndShowError() {
+    _keyFieldController.clear();
+    _formKey.currentState.validate();
   }
 
   void _goToMainView(AllMovies movies) {

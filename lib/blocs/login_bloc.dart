@@ -9,7 +9,7 @@ import 'package:movie_app/texts/movie_app_texts.dart';
 class LoginBloc {
   final api = Api();
 
-  Future<AllMovies> makeRequest(String key) async {
+  Future<AllMovies> _makeRequest({@required String key}) async {
     var url = UrlManager().trendingMovieUrl(key);
     try {
       var decodedJson = await Api().request(url);
@@ -21,12 +21,12 @@ class LoginBloc {
   }
 
   void loginAction(
-      TextEditingController textField,
-      GlobalKey<FormState> formKey,
-      Function onSuccess(AllMovies),
-      Function onFail) async {
+      {@required TextEditingController textField,
+      @required GlobalKey<FormState> formKey,
+      @required Function onSuccess,
+      @required Function onFail}) async {
     if (formKey.currentState.validate()) {
-      var movies = await makeRequest(textField.text);
+      var movies = await _makeRequest(key: textField.text);
 
       if (isValidAllMovies(movies)) {
         onSuccess(movies);
@@ -36,7 +36,9 @@ class LoginBloc {
     }
   }
 
-  validateForm(dynamic value, TextEditingController keyFieldController) {
+  validateForm(
+      {@required dynamic value,
+      @required TextEditingController keyFieldController}) {
     if (isInvalidKeyFormat(value)) {
       keyFieldController.clear();
       return MovideAppTexts.form_error;
@@ -44,7 +46,7 @@ class LoginBloc {
   }
 
   bool isValidAllMovies(movies) {
-    return movies != null;
+    return movies is AllMovies;
   }
 
   bool isInvalidKeyFormat(value) {
