@@ -67,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
           child: TextFormField(
             controller: _keyFieldController,
             validator: (value) {
-              if (value.trim().isEmpty || value.trim() == null) {
+              if (_loginBloc.isInvalidKeyFormat(value)) {
                 _keyFieldController.clear();
                 return MovideAppTexts.form_error;
               }

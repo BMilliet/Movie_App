@@ -19,8 +19,12 @@ class LoginBloc {
       AllMovies movies = new AllMovies.fromJson(decodedJson);
       return movies;
     } catch (exception) {
-      return exception;
+      //return exception;
     }
+  }
+
+  bool isInvalidKeyFormat(value) {
+    return (value == null || value.trim() == null || value.trim().isEmpty);
   }
 
   void close() {

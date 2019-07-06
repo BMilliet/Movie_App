@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
-import 'package:movie_app/styles/movie_app_dimens.dart';
 
 class MainView extends StatefulWidget {
   AllMovies _movies;
@@ -11,6 +10,12 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  @override
+  void initState() {
+    print(widget._movies);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
