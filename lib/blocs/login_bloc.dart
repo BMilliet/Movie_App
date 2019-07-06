@@ -18,9 +18,13 @@ class LoginBloc {
       var decodedJson = await Api().request(url);
       AllMovies movies = new AllMovies.fromJson(decodedJson);
       return movies;
-    } catch (exception) {
-      //return exception;
+    } catch (error) {
+      print(error);
     }
+  }
+
+  bool isValidAllMovies(dynamic movies) {
+    return movies == AllMovies;
   }
 
   bool isInvalidKeyFormat(value) {

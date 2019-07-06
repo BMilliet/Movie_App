@@ -102,7 +102,13 @@ class _LoginViewState extends State<LoginView> {
     var key = _keyFieldController.text;
     if (_formKey.currentState.validate()) {
       var movies = await _loginBloc.makeRequest(key);
-      _goToMainView(movies);
+
+      if (_loginBloc.isValidAllMovies(movies)) {
+        _goToMainView(movies);
+      } else {
+        _keyFieldController.clear();
+        _formKey.currentState.validate();
+      }
     }
   }
 
