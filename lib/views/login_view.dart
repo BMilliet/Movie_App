@@ -20,27 +20,22 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-          stream: _loginBloc.allMovies,
-          builder: (context, snapshot) {
-            return Container(
-                color: MovieAppColors.secondaryColor,
-                child: SafeArea(
-                  child: Padding(
-                    padding: EdgeInsets.all(MovieAppDimens.stack_20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        _movieDbLogo(),
-                        _infoText(),
-                        _textField(),
-                        _loginButton()
-                      ],
-                    ),
-                  ),
-                ));
-          }),
-    );
+        body: Container(
+            color: MovieAppColors.secondaryColor,
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(MovieAppDimens.stack_20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _movieDbLogo(),
+                    _infoText(),
+                    _textField(),
+                    _loginButton()
+                  ],
+                ),
+              ),
+            )));
   }
 
   _movieDbLogo() {
