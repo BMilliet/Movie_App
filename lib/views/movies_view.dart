@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 
-class MainView extends StatefulWidget {
+class MoviesView extends StatefulWidget {
   AllMovies _movies;
-  MainView(this._movies);
+  MoviesView(this._movies);
 
-  _MainViewState createState() => _MainViewState();
+  MoviesViewState createState() => MoviesViewState();
 }
 
-class _MainViewState extends State<MainView> {
+class MoviesViewState extends State<MoviesView> {
   @override
   void initState() {
     print(widget._movies);

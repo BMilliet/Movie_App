@@ -6,7 +6,7 @@ import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
-import 'package:movie_app/views/main_view.dart';
+import 'package:movie_app/views/movies_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key key}) : super(key: key);
@@ -112,7 +112,7 @@ class LoginViewState extends State<LoginView> {
   void _goToMainView(AllMovies movies) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MainView(movies)),
+      MaterialPageRoute(builder: (context) => MoviesView(movies)),
     );
   }
 }
