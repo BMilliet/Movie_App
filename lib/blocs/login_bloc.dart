@@ -11,8 +11,9 @@ class LoginBloc {
 
   Future<AllMovies> _makeRequest({@required String key}) async {
     var url = UrlManager().trendingMovieUrl(key);
+
     try {
-      var decodedJson = await Api().request(url);
+      var decodedJson = await api.request(url);
       AllMovies movies = new AllMovies.fromJson(decodedJson);
       return movies;
     } catch (error) {

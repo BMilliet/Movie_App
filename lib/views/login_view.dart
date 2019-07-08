@@ -9,10 +9,12 @@ import 'package:movie_app/texts/movie_app_texts.dart';
 import 'package:movie_app/views/main_view.dart';
 
 class LoginView extends StatefulWidget {
-  _LoginViewState createState() => _LoginViewState();
+  const LoginView({Key key}) : super(key: key);
+
+  LoginViewState createState() => LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class LoginViewState extends State<LoginView> {
   final _loginBloc = LoginBloc();
   final _keyFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -40,6 +42,7 @@ class _LoginViewState extends State<LoginView> {
 
   _movieDbLogo() {
     return Container(
+        key: Key(MovideAppTexts.logo_key),
         width: 180,
         height: 70,
         margin: EdgeInsets.only(bottom: MovieAppDimens.stack_40),
