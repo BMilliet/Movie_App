@@ -1,4 +1,5 @@
 class MovieAppDimens {
+  static const double stack_2 = 2;
   static const double stack_4 = 4;
   static const double stack_10 = 10;
   static const double stack_20 = 20;

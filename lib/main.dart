@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/views/login_view.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MovieApp());
 
-class MyApp extends StatelessWidget {
+class MovieApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Movie app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
