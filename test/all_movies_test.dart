@@ -11,10 +11,9 @@ void main() {
   test('Should return instance of allMovies from correct json', () {
     _all_movies = new AllMovies.fromJson(_json);
     List<Movie> _movies = _all_movies.movies;
-    int _movies_count = _all_movies.movies.length;
 
     expect(_all_movies is AllMovies, true);
     expect(_movies is List<Movie>, true);
-    expect(_movies_count, 2);
+    expect(_all_movies.count(), 2);
   });
 }

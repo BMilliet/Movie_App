@@ -1,5 +1,8 @@
 class UrlManager {
   final _baseUrl = 'https://api.themoviedb.org';
+  final _basePosterUrl = 'https://image.tmdb.org';
+  final _size_prefix = 't/p';
+  final _poster_size = 'w500';
   final _api_version = '3';
   final _category = 'trending';
   final _option = 'all';
@@ -12,6 +15,11 @@ class UrlManager {
     var _base = buildUrl([_baseUrl, _api_version, _category, _option]);
     var _urlWithParameters = addUrlParameters(_base, [_time]);
     return _urlWithParameters + _key_prefix + key;
+  }
+
+  String posterUrl(String poster_path) {
+    var _base = buildUrl([_basePosterUrl, _size_prefix]);
+    return _base + _poster_size + poster_path;
   }
 
   String buildUrl(List<String> elements) {

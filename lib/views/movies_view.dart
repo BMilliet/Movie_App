@@ -18,9 +18,25 @@ class MoviesViewState extends State<MoviesView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-      color: MovieAppColors.secondaryColor,
-    ));
+    return Scaffold(body: SafeArea(child: _buildGrid(context, widget._movies)));
+  }
+
+  Widget _buildGrid(BuildContext context, AllMovies movies) {
+    return GridView.builder(
+      padding: EdgeInsets.all(10),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
+      itemCount: movies.count(),
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {},
+          child: Image.network(
+            movies.posterPathForMovieAt(index: index),
+            height: 300,
+            fit: BoxFit.fill,
+          ),
+        );
+      },
+    );
   }
 }
