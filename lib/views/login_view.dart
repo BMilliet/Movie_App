@@ -27,20 +27,24 @@ class LoginViewState extends State<LoginView> {
             child: SafeArea(
               child: Padding(
                 padding: EdgeInsets.all(MovieAppDimens.stack_20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _movieDbLogo(),
-                    _infoText(),
-                    _textField(),
-                    _loginButton()
-                  ],
+                child: ListView(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        _movieDbLogo(),
+                        _infoText(),
+                        _textField(),
+                        _loginButton()
+                      ],
+                    )
+                  ]
                 ),
               ),
             )));
   }
 
-  _movieDbLogo() {
+  Widget _movieDbLogo() {
     return Container(
         key: Key(MovideAppTexts.logo_key),
         width: 180,
