@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/components/movie_card.dart';
 import 'package:movie_app/models/all_movies.dart';
 
 class MoviesView extends StatefulWidget {
@@ -10,32 +11,36 @@ class MoviesView extends StatefulWidget {
 
 class MoviesViewState extends State<MoviesView> {
   @override
+
+  List<MovieCard> _cards = [];
+
   void initState() {
     print(widget._movies);
+    _buildCards();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: _buildGrid(context, widget._movies)));
+    return Scaffold(body: SafeArea(child: _buildList()));
   }
 
-  Widget _buildGrid(BuildContext context, AllMovies movies) {
-    return GridView.builder(
-      padding: EdgeInsets.all(10),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
-      itemCount: movies.count(),
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {},
-          child: Image.network(
-            movies.posterPathForMovieAt(index: index),
-            height: 300,
-            fit: BoxFit.fill,
-          ),
-        );
-      },
+  Widget _buildList() {
+    return Container(
+      height: 400,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: _cards,
+      ),
     );
+  }
+
+  List<MovieCard> _buildCards() {
+    List<MovieCard> cards = [];
+    for (var movie in widget._movies.movies) {
+      final card = MovieCard(movie);
+      cards.add(card);
+    }
+    return cards;
   }
 }
