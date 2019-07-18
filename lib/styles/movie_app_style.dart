@@ -23,4 +23,11 @@ class MovieAppStyle {
       fontFamily: 'Avenir',
       letterSpacing: 0.5,
       color: MovieAppColors.darkTextColor);
+
+  static const bright_style_s = const TextStyle(
+      fontSize: MovieAppDimens.font_size_16,
+      fontWeight: FontWeight.w800,
+      fontFamily: 'Avenir',
+      letterSpacing: 0.5,
+      color: MovieAppColors.highlightColor);
 }

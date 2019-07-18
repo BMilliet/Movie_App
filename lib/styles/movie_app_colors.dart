@@ -8,6 +8,6 @@ class MovieAppColors {
   static const Color primaryTextColor = const Color(0xff00e676);
   static const Color lightTextColor = const Color(0xff69f0ae);
   static const Color darkTextColor = const Color(0xff004d40);
-
-  static const Color highlightColor = const Color(0xff18ffff);
+  static const Color brightTextColor = const Color(0xff004d40);
+  static const Color highlightColor = const Color(0xfff5f5f5);
 }

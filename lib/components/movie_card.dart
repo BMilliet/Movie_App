@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/models/movie.dart';
+import 'package:movie_app/styles/movie_app_dimens.dart';
+import 'package:movie_app/styles/movie_app_style.dart';
 
 class MovieCard extends StatelessWidget {
   Movie _movie;
+  final double _cardWidth = 180;
+
   MovieCard(this._movie);
 
   @override
@@ -14,20 +18,27 @@ class MovieCard extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                  height: 400,
-                  width: 280,
+                  height: MovieAppDimens.stack_300,
+                  width: _cardWidth,
                   child: GestureDetector(
                     onTap: () {},
                     child: Image.network(
                       _movie.getPoster(),
-                      height: 400,
+                      height: MovieAppDimens.stack_300,
                       fit: BoxFit.cover,
                     ),
                   )),
               Positioned(
                 left: 10,
                 bottom: 10,
-                child: Text(_movie.title),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      _movie.title,
+                      style: MovieAppStyle.bright_style_s,
+                    )
+                  ],
+                ),
               ),
             ],
           )),

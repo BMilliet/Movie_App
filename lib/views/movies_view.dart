@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_card.dart';
 import 'package:movie_app/models/all_movies.dart';
+import 'package:movie_app/styles/movie_app_dimens.dart';
 
 class MoviesView extends StatefulWidget {
   AllMovies _movies;
@@ -11,7 +12,6 @@ class MoviesView extends StatefulWidget {
 
 class MoviesViewState extends State<MoviesView> {
   @override
-
   List<MovieCard> _cards = [];
 
   void initState() {
@@ -27,10 +27,11 @@ class MoviesViewState extends State<MoviesView> {
 
   Widget _buildList() {
     return Container(
-      height: 400,
-      child: ListView(
+      height: MovieAppDimens.stack_300,
+      width: MovieAppDimens.inline_180,
+      child: PageView(
         scrollDirection: Axis.horizontal,
-        children: _cards,
+        children: _buildCards(),
       ),
     );
   }
