@@ -5,7 +5,6 @@ import 'package:movie_app/styles/movie_app_style.dart';
 
 class MovieCard extends StatelessWidget {
   Movie _movie;
-  final double _cardWidth = 180;
 
   MovieCard(this._movie);
 
@@ -19,11 +18,11 @@ class MovieCard extends StatelessWidget {
             children: <Widget>[
               Container(
                   height: MovieAppDimens.stack_300,
-                  width: _cardWidth,
+                  width: MovieAppDimens.inline_180,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: onTapAction(_movie),
                     child: Image.network(
-                      _movie.getPoster(),
+                      _resolvePoster(),
                       height: MovieAppDimens.stack_300,
                       fit: BoxFit.cover,
                     ),
@@ -34,7 +33,7 @@ class MovieCard extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      _movie.title,
+                      _resolveTitle(),
                       style: MovieAppStyle.bright_style_s,
                     )
                   ],
@@ -43,5 +42,24 @@ class MovieCard extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  onTapAction(Movie movie) {
+    print(movie.title);
+    print(movie.overview);
+  }
+
+  dynamic _resolvePoster() {
+    if(_movie.getPoster() != null) {
+      return _movie.getPoster();
+    }
+    return null;
+  }
+
+  String _resolveTitle() {
+    if(_movie.title != null) {
+      return _movie.title;
+    }
+    return '';
   }
 }
