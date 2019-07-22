@@ -13,7 +13,7 @@ class MoviesView extends StatefulWidget {
 class MoviesViewState extends State<MoviesView> {
   @override
   List<MovieCard> _cards = [];
-  PageController controller = PageController();
+  PageController controller = PageController(viewportFraction: 0.8, initialPage: 0);
   var currentPageValue = 0.0;
 
   void initState() {
@@ -55,7 +55,11 @@ class MoviesViewState extends State<MoviesView> {
               child: _cards[position],
             );
           } else {
-          return _cards[0];
+            return Transform(
+              transform: Matrix4.identity()
+              ..rotateX(currentPageValue - position),
+              child: _cards[position],
+            );
           }
         },
         itemCount: _cards.length,
