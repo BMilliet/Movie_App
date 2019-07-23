@@ -13,7 +13,8 @@ class MoviesView extends StatefulWidget {
 class MoviesViewState extends State<MoviesView> {
   @override
   List<MovieCard> _cards = [];
-  PageController controller = PageController(viewportFraction: 0.8, initialPage: 0);
+  PageController controller =
+      PageController(viewportFraction: 0.8, initialPage: 0);
   var currentPageValue = 0.0;
 
   void initState() {
@@ -28,43 +29,34 @@ class MoviesViewState extends State<MoviesView> {
     return Scaffold(body: SafeArea(child: _buildPageView()));
   }
 
-  Widget _buildList() {
-    return Container(
-      height: MovieAppDimens.stack_300,
-      child: PageView(
-        scrollDirection: Axis.horizontal,
-        children: _buildCards(),
-      ),
-    );
-  }
-
   Widget _buildPageView() {
     return Container(
-      height: MovieAppDimens.stack_300,
-      child: PageView.builder(
-        controller: controller,
-        itemBuilder: (context, position) {
-          if (position == currentPageValue.floor()) {
-            return Transform(
-              transform: Matrix4.identity()..rotateX(currentPageValue - position),
-              child: _cards[position],
-            );
-          } else if (position == currentPageValue.floor() + 1) {
-            return Transform(
-              transform: Matrix4.identity()..rotateX(currentPageValue - position),
-              child: _cards[position],
-            );
-          } else {
-            return Transform(
-              transform: Matrix4.identity()
-              ..rotateX(currentPageValue - position),
-              child: _cards[position],
-            );
-          }
-        },
-        itemCount: _cards.length,
-      )
-    );
+        height: MovieAppDimens.stack_300,
+        child: PageView.builder(
+          controller: controller,
+          itemBuilder: (context, position) {
+            if (position == currentPageValue.floor()) {
+              return Transform(
+                transform: Matrix4.identity()
+                  ..rotateX(currentPageValue - position),
+                child: _cards[position],
+              );
+            } else if (position == currentPageValue.floor() + 1) {
+              return Transform(
+                transform: Matrix4.identity()
+                  ..rotateX(currentPageValue - position),
+                child: _cards[position],
+              );
+            } else {
+              return Transform(
+                transform: Matrix4.identity()
+                  ..rotateX(currentPageValue - position),
+                child: _cards[position],
+              );
+            }
+          },
+          itemCount: _cards.length,
+        ));
   }
 
   void _setControllerListener() {
