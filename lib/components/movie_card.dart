@@ -22,6 +22,7 @@ class MovieCard extends StatelessWidget {
               child: Image.network(
                 _resolvePoster(),
                 height: MovieAppDimens.stack_300,
+                alignment: Alignment.center,
                 fit: BoxFit.cover,
               ),
             )),

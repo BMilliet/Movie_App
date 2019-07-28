@@ -1,5 +1,6 @@
 class MovideAppTexts {
   //General info Strings
+  static const String movie_app_title = 'Movie App';
   static const String login_info =
       'This app uses The Movie DB API. Insert your API key in the field to login';
   static const String login_button = 'Login';

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/components/movie_app_appBar.dart';
+import 'package:movie_app/components/movie_app_shape.dart';
 import 'package:movie_app/components/movie_card.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
@@ -14,7 +16,7 @@ class MoviesViewState extends State<MoviesView> {
   @override
   List<MovieCard> _cards = [];
   PageController controller =
-      PageController(viewportFraction: 0.8, initialPage: 0);
+      PageController(viewportFraction: 0.45, initialPage: 0);
   var currentPageValue = 0.0;
 
   void initState() {
@@ -24,9 +26,25 @@ class MoviesViewState extends State<MoviesView> {
     super.initState();
   }
 
+  AppBar customAppBar = MovieAppBar().basicAppBar();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: _buildPageView()));
+    return Scaffold(appBar: customAppBar, body: _buildBody());
+  }
+
+  Widget _buildBody() {
+    return SafeArea(
+        child: ListView(
+      children: <Widget>[_customShape(), _buildPageView()],
+    ));
+  }
+
+  Widget _customShape() {
+    return Container(
+      height: 270,
+      child: MovieAppShape().roundedShape(),
+    );
   }
 
   Widget _buildPageView() {
