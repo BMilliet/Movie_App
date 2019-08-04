@@ -6,7 +6,8 @@ class MovideAppTexts {
   static const String login_button = 'Login';
 
   //MovieDB Api Strings
-  static const String movieDb_Logo = 'images/movieDbLogoRectangle.png';
+  static const String movieDb_logo_retangle = 'images/movieDbLogoRectangle.png';
+  static const String movieDb_logo_square = 'images/movieDbLogoSquare.png';
   static const String key_label = 'MovieDB key';
   static const String logo_key = 'logoContainer';
 

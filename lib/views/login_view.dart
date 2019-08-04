@@ -23,23 +23,21 @@ class LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            color: MovieAppColors.secondaryColor,
+            color: MovieAppColors.backgroundColor,
             child: SafeArea(
               child: Padding(
                 padding: EdgeInsets.all(MovieAppDimens.stack_20),
-                child: ListView(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        _movieDbLogo(),
-                        _infoText(),
-                        _textField(),
-                        _loginButton()
-                      ],
-                    )
-                  ]
-                ),
+                child: ListView(children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _movieDbLogo(),
+                      _infoText(),
+                      _textField(),
+                      _loginButton()
+                    ],
+                  )
+                ]),
               ),
             )));
   }
@@ -52,7 +50,7 @@ class LoginViewState extends State<LoginView> {
         margin: EdgeInsets.only(bottom: MovieAppDimens.stack_40),
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(MovideAppTexts.movieDb_Logo),
+                image: AssetImage(MovideAppTexts.movieDb_logo_retangle),
                 fit: BoxFit.fill)));
   }
 

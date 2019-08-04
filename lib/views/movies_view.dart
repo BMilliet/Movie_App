@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_app_appBar.dart';
-import 'package:movie_app/components/movie_app_shape.dart';
+import 'package:movie_app/components/movie_app_custom_shape.dart';
 import 'package:movie_app/components/movie_card.dart';
 import 'package:movie_app/models/all_movies.dart';
+import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 
 class MoviesView extends StatefulWidget {
@@ -30,21 +31,25 @@ class MoviesViewState extends State<MoviesView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: customAppBar, body: _buildBody());
+    return Scaffold(
+      appBar: customAppBar,
+      body: _buildBody(),
+      backgroundColor: MovieAppColors.backgroundColor,
+    );
   }
 
   Widget _buildBody() {
     return SafeArea(
         child: ListView(
-      children: <Widget>[_customShape(), _buildPageView()],
+      children: <Widget>[_customContainer(), _buildPageView()],
     ));
   }
 
-  Widget _customShape() {
+  Widget _customContainer() {
     return Container(
-      height: 270,
-      child: MovieAppShape().roundedShape(),
-    );
+        height: 180,
+        child: MovieAppCustomShape()
+            .clipContainer(Container(color: MovieAppColors.primaryColor)));
   }
 
   Widget _buildPageView() {
