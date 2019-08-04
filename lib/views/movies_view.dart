@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/blocs/movies_view_bloc.dart';
 import 'package:movie_app/components/movie_app_appBar.dart';
 import 'package:movie_app/components/movie_app_custom_shape.dart';
+import 'package:movie_app/components/movie_app_pageView.dart';
 import 'package:movie_app/components/movie_card.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
@@ -15,24 +17,21 @@ class MoviesView extends StatefulWidget {
 
 class MoviesViewState extends State<MoviesView> {
   @override
+  MoviesViewBloc _bloc = MoviesViewBloc();
   List<MovieCard> _cards = [];
-  PageController controller =
-      PageController(viewportFraction: 0.45, initialPage: 0);
-  var currentPageValue = 0.0;
+  AppBar _customAppBar = MovieAppBar().basicAppBar();
+  MovieAppPageView _pageView = MovieAppPageView();
 
   void initState() {
-    print(widget._movies);
-    _cards = _buildCards();
+    _cards = _bloc.buildCards(widget._movies);
     _setControllerListener();
     super.initState();
   }
 
-  AppBar customAppBar = MovieAppBar().basicAppBar();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar,
+      appBar: _customAppBar,
       body: _buildBody(),
       backgroundColor: MovieAppColors.backgroundColor,
     );
@@ -41,7 +40,10 @@ class MoviesViewState extends State<MoviesView> {
   Widget _buildBody() {
     return SafeArea(
         child: ListView(
-      children: <Widget>[_customContainer(), _buildPageView()],
+      children: <Widget>[
+        _customContainer(),
+        _pageView.build(_cards, MovieAppDimens.stack_300)
+      ],
     ));
   }
 
@@ -52,54 +54,11 @@ class MoviesViewState extends State<MoviesView> {
             .clipContainer(Container(color: MovieAppColors.primaryColor)));
   }
 
-  Widget _buildPageView() {
-    return Container(
-        height: MovieAppDimens.stack_300,
-        child: PageView.builder(
-          controller: controller,
-          itemBuilder: (context, position) {
-            if (position == currentPageValue.floor()) {
-              return Transform(
-                transform: Matrix4.identity()
-                  ..rotateX(currentPageValue - position),
-                child: _cards[position],
-              );
-            } else if (position == currentPageValue.floor() + 1) {
-              return Transform(
-                transform: Matrix4.identity()
-                  ..rotateX(currentPageValue - position),
-                child: _cards[position],
-              );
-            } else {
-              return Transform(
-                transform: Matrix4.identity()
-                  ..rotateX(currentPageValue - position),
-                child: _cards[position],
-              );
-            }
-          },
-          itemCount: _cards.length,
-        ));
-  }
-
   void _setControllerListener() {
-    controller.addListener(() {
+    _pageView.controller.addListener(() {
       setState(() {
-        currentPageValue = controller.page;
+        _pageView.currentPageValue = _pageView.controller.page;
       });
     });
-  }
-
-  List<MovieCard> _buildCards() {
-    List<MovieCard> cards = [];
-    for (var movie in widget._movies.movies) {
-      final card = MovieCard(movie);
-      cards.add(card);
-    }
-    return cards;
-  }
-
-  void _onTapAction() {
-    print('tap on card');
   }
 }

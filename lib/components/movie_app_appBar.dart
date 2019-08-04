@@ -9,22 +9,16 @@ class MovieAppBar {
   @override
   AppBar basicAppBar() {
     return AppBar(
-      backgroundColor: MovieAppColors.primaryColor,
-      elevation: 0,
-      title: Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[_title(), _logoutButton()],
-          )),
-    );
+        backgroundColor: MovieAppColors.primaryColor,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: _title(),
+        leading: _logoutButton());
   }
 
   Widget _title() {
-    return Container(
-      child: Text(MovideAppTexts.movie_app_title,
-          style: MovieAppStyle.dark_style_m),
-    );
+    return Text(MovideAppTexts.movie_app_title,
+        style: MovieAppStyle.dark_style_m);
   }
 
   Widget _logoutButton() {
