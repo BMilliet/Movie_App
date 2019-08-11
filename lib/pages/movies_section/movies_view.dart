@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/blocs/movies_view_bloc.dart';
+import 'package:movie_app/pages/movies_section/movies_presenter.dart';
 import 'package:movie_app/components/movie_app_appBar.dart';
 import 'package:movie_app/components/movie_app_custom_shape.dart';
 import 'package:movie_app/components/movie_app_pageView.dart';
@@ -17,13 +17,13 @@ class MoviesView extends StatefulWidget {
 
 class MoviesViewState extends State<MoviesView> {
   @override
-  MoviesViewBloc _bloc = MoviesViewBloc();
+  MoviesPresenter _presenter = MoviesPresenter();
   List<MovieCard> _cards = [];
   AppBar _customAppBar = MovieAppBar().basicAppBar();
   MovieAppPageView _pageView = MovieAppPageView();
 
   void initState() {
-    _cards = _bloc.buildCards(widget._movies);
+    _cards = _presenter.buildCards(widget._movies);
     _setControllerListener();
     super.initState();
   }
@@ -35,6 +35,11 @@ class MoviesViewState extends State<MoviesView> {
       body: _buildBody(),
       backgroundColor: MovieAppColors.backgroundColor,
     );
+  }
+
+//tentar colocar o StreamBuilder aqui na construcao da page
+  Widget _builBody1() {
+    //return StreamBuilder(stream: _bloc.counter, initialData: 0);
   }
 
   Widget _buildBody() {
@@ -56,9 +61,10 @@ class MoviesViewState extends State<MoviesView> {
 
   void _setControllerListener() {
     _pageView.controller.addListener(() {
-      setState(() {
-        _pageView.currentPageValue = _pageView.controller.page;
-      });
+      //setState(() {
+      //  _pageView.currentPageValue = _pageView.controller.page;
+      //});
+      //_bloc.changePageViewState(_pageView);
     });
   }
 }

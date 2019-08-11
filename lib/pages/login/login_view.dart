@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/blocs/login_bloc.dart';
+import 'package:movie_app/pages/login/login_presenter.dart';
 import 'package:movie_app/components/movie_app_buttons.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
-import 'package:movie_app/views/movies_view.dart';
+import 'package:movie_app/pages/movies_section/movies_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key key}) : super(key: key);
@@ -15,7 +15,7 @@ class LoginView extends StatefulWidget {
 }
 
 class LoginViewState extends State<LoginView> {
-  final _loginBloc = LoginBloc();
+  final _presenter = LoginPresenter();
   final _keyFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -67,7 +67,7 @@ class LoginViewState extends State<LoginView> {
           child: TextFormField(
             controller: _keyFieldController,
             validator: (value) {
-              if (_loginBloc.isInvalidKeyFormat(value)) {
+              if (_presenter.isInvalidKeyFormat(value)) {
                 _keyFieldController.clear();
                 return MovideAppTexts.form_error;
               }
@@ -99,7 +99,7 @@ class LoginViewState extends State<LoginView> {
   }
 
   void _login() async {
-    _loginBloc.loginAction(
+    _presenter.loginAction(
         textField: _keyFieldController,
         formKey: _formKey,
         onSuccess: _goToMainView,
