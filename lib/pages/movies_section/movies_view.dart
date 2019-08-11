@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/pages/movies_section/movies_bloc.dart';
 import 'package:movie_app/pages/movies_section/movies_presenter.dart';
 import 'package:movie_app/components/movie_app_appBar.dart';
 import 'package:movie_app/components/movie_app_custom_shape.dart';
@@ -18,6 +19,7 @@ class MoviesView extends StatefulWidget {
 class MoviesViewState extends State<MoviesView> {
   @override
   MoviesPresenter _presenter = MoviesPresenter();
+  MoviesBloc _bloc = MoviesBloc();
   List<MovieCard> _cards = [];
   AppBar _customAppBar = MovieAppBar().basicAppBar();
   MovieAppPageView _pageView = MovieAppPageView();
@@ -32,24 +34,25 @@ class MoviesViewState extends State<MoviesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _customAppBar,
-      body: _buildBody(),
+      body: _builBody(context),
       backgroundColor: MovieAppColors.backgroundColor,
     );
   }
 
-//tentar colocar o StreamBuilder aqui na construcao da page
-  Widget _builBody1() {
-    //return StreamBuilder(stream: _bloc.counter, initialData: 0);
-  }
-
-  Widget _buildBody() {
+  Widget _builBody(BuildContext context) {
     return SafeArea(
-        child: ListView(
-      children: <Widget>[
-        _customContainer(),
-        _pageView.build(_cards, MovieAppDimens.stack_300)
-      ],
-    ));
+        child: StreamBuilder<double>(
+            stream: _bloc.counter,
+            initialData: 0,
+            builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
+              return ListView(
+                children: <Widget>[
+                  _customContainer(),
+                  _pageView.build(
+                      _cards, snapshot.data, MovieAppDimens.stack_300)
+                ],
+              );
+            }));
   }
 
   Widget _customContainer() {
@@ -61,10 +64,7 @@ class MoviesViewState extends State<MoviesView> {
 
   void _setControllerListener() {
     _pageView.controller.addListener(() {
-      //setState(() {
-      //  _pageView.currentPageValue = _pageView.controller.page;
-      //});
-      //_bloc.changePageViewState(_pageView);
+      _bloc.changePageViewState(_pageView);
     });
   }
 }

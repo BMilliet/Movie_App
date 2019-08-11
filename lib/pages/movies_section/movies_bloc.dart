@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:movie_app/components/movie_app_pageView.dart';
 
 class MoviesBloc {
-  double _pageViewValue = 0;
+  double _currentValue = 0;
 
   final _counterStateController = StreamController<double>();
 
@@ -11,7 +11,8 @@ class MoviesBloc {
   Stream<double> get counter => _counterStateController.stream;
 
   void changePageViewState(MovieAppPageView pageView) {
-    pageView.currentPageValue = pageView.controller.page;
+    _currentValue = pageView.controller.page;
+    _inCounter.add(_currentValue);
   }
 
   void _onTapAction() {
