@@ -5,6 +5,7 @@ import 'package:movie_app/styles/movie_app_style.dart';
 
 class MovieCard extends StatelessWidget {
   Movie _movie;
+  Function actionCallback;
 
   MovieCard(this._movie);
 
@@ -18,7 +19,7 @@ class MovieCard extends StatelessWidget {
           children: <Widget>[
             Container(
                 child: GestureDetector(
-              onTap: onTapAction(_movie),
+              //onTap: onTapAction(actionCallback),
               child: Image.network(
                 _resolvePoster(),
                 height: MovieAppDimens.stack_300,
@@ -27,8 +28,8 @@ class MovieCard extends StatelessWidget {
               ),
             )),
             Positioned(
-              left: 10,
-              bottom: 10,
+              left: MovieAppDimens.stack_10,
+              bottom: MovieAppDimens.stack_10,
               child: Row(
                 children: <Widget>[
                   Text(
@@ -42,9 +43,8 @@ class MovieCard extends StatelessWidget {
         ));
   }
 
-  onTapAction(Movie movie) {
-    print(movie.title);
-    print(movie.overview);
+  onTapAction(Function action) {
+    action();
   }
 
   dynamic _resolvePoster() {

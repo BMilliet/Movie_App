@@ -6,13 +6,13 @@ class MoviesPresenter {
     List<MovieCard> cards = [];
     for (var movie in allMovies.movies) {
       final card = MovieCard(movie);
-      card.onTapAction(movie);
+      card.actionCallback = _onTapAction();
       cards.add(card);
     }
     return cards;
   }
 
-  void _onTapAction() {
+  _onTapAction() {
     print('tap on card');
   }
 }
