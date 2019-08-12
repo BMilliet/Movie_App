@@ -12,13 +12,7 @@ class MovieAppPageView extends PageView {
         child: PageView.builder(
           controller: controller,
           itemBuilder: (context, position) {
-            if (position == currentPageValue.floor()) {
-              return Transform(
-                transform: Matrix4.identity()
-                  ..rotateX(currentPageValue - position),
-                child: cards[position],
-              );
-            } else if (position == currentPageValue.floor() + 1) {
+            if (position == currentPageValue.floor() + 1) {
               return Transform(
                 transform: Matrix4.identity()
                   ..rotateX(currentPageValue - position),
