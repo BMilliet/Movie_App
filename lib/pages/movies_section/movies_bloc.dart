@@ -14,8 +14,4 @@ class MoviesBloc {
     _currentValue = pageView.controller.page;
     _inCounter.add(_currentValue);
   }
-
-  void _onTapAction() {
-    print('tap on card');
-  }
 }
