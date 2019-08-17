@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_app/models/movie.dart';
 
-import 'json_mock.dart';
+import '../test_helpers/json_mock.dart';
 
 void main() {
   final _json = JsonMock.moviesJson;
