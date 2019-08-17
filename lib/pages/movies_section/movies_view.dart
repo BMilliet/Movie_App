@@ -57,7 +57,7 @@ class MoviesViewState extends State<MoviesView> {
 
   Widget _customContainer() {
     return Container(
-        height: 180,
+        height: MovieAppDimens.stack_180,
         child: MovieAppCustomShape()
             .clipContainer(Container(color: MovieAppColors.primaryColor)));
   }
