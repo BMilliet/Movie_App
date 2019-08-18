@@ -6,7 +6,7 @@ import 'package:movie_app/infra/url_manager.dart';
 import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
 
-class LoginBloc {
+class LoginPresenter {
   final api = Api();
 
   Future<AllMovies> _makeRequest({@required String key}) async {

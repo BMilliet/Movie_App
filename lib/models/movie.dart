@@ -1,3 +1,5 @@
+import 'package:movie_app/infra/url_manager.dart';
+
 class Movie {
   final int id;
   final String title;
@@ -20,5 +22,9 @@ class Movie {
         overview: json['overview'],
         poster_path: json['poster_path'],
         vote_average: json['vote_average']);
+  }
+
+  String getPoster() {
+    return UrlManager().posterUrl(poster_path);
   }
 }

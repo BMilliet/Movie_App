@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
-import 'package:movie_app/views/login_view.dart';
+import 'package:movie_app/pages/login/login_view.dart';
 
-import 'widget_helper.dart';
+import '../test_helpers/widget_helper.dart';
 
 void main() {
   final _imageFinder = find.byKey(Key(MovideAppTexts.logo_key));
