@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/infra/named_routes.dart';
 import 'package:movie_app/models/movie.dart';
-import 'package:movie_app/pages/movie_detail/detail_view.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 
@@ -20,10 +20,7 @@ class MovieCard extends StatelessWidget {
             Container(
                 child: GestureDetector(
               onTap: () {
-                print("tap on card");
-                print(_movie.title);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailView()));
+                Navigator.pushNamed(context, detailView, arguments: _movie);
               },
               child: Image.network(
                 _resolvePoster(),
