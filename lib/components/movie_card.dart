@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/models/movie.dart';
+import 'package:movie_app/pages/movie_detail/detail_view.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 
 class MovieCard extends StatelessWidget {
   Movie _movie;
-  Function _actionCallback;
 
-  MovieCard(this._movie, this._actionCallback);
+  MovieCard(this._movie);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,12 @@ class MovieCard extends StatelessWidget {
           children: <Widget>[
             Container(
                 child: GestureDetector(
-              onTap: _actionCallback,
+              onTap: () {
+                print("tap on card");
+                print(_movie.title);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DetailView()));
+              },
               child: Image.network(
                 _resolvePoster(),
                 height: MovieAppDimens.stack_300,
