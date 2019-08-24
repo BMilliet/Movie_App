@@ -16,19 +16,32 @@ class _DetailViewState extends State<DetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _backGroundColor,
       appBar: MovieAppBar.basicAppBar(context),
-      body: _buildBody(),
+      body: SafeArea(child: _stack()),
     );
   }
 
-  Widget _buildBody() {
-    return SafeArea(
-      child: Container(
-        color: _backGroundColor,
-        child: ListView(
-          children: [_posterMask(), _titles(), _overview()],
-        ),
-      ),
+  Widget _stack() {
+    return Stack(
+      children: <Widget>[_listView(), _informations()],
+    );
+  }
+
+  Widget _listView() {
+    return ListView(children: [_posterMask(), _emptyContainer(180)]);
+  }
+
+  Widget _informations() {
+    return ListView(
+      children: <Widget>[_emptyContainer(400), _titles(), _overview()],
+    );
+  }
+
+  Widget _emptyContainer(double height) {
+    return Container(
+      height: height,
+      color: Colors.transparent,
     );
   }
 
