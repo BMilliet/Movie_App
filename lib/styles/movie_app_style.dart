@@ -30,4 +30,18 @@ class MovieAppStyle {
       fontFamily: 'Avenir',
       letterSpacing: 0.5,
       color: MovieAppColors.highlightColor);
+
+  static const bright_style_l = const TextStyle(
+      fontSize: 26,
+      fontWeight: FontWeight.w800,
+      fontFamily: 'Avenir',
+      letterSpacing: 0.5,
+      color: MovieAppColors.highlightColor);
+
+  static const bright_style_m = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w800,
+      fontFamily: 'Avenir',
+      letterSpacing: 0.5,
+      color: MovieAppColors.highlightColor);
 }

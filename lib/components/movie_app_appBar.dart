@@ -7,21 +7,41 @@ class MovieAppBar {
   MovieAppBar();
 
   @override
-  AppBar basicAppBar() {
+  static AppBar basicAppBarWithLogout() {
     return AppBar(
         backgroundColor: MovieAppColors.primaryColor,
         elevation: 0,
+        centerTitle: true,
         automaticallyImplyLeading: false,
         title: _title(),
-        leading: _logoutButton());
+        actions: [_logoutButton()]);
   }
 
-  Widget _title() {
+  static AppBar basicAppBar(BuildContext context) {
+    return AppBar(
+        backgroundColor: MovieAppColors.primaryColor,
+        elevation: 4,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: _backButton(context));
+  }
+
+  static Widget _backButton(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      color: Colors.black,
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  static Widget _title() {
     return Text(MovideAppTexts.movie_app_title,
         style: MovieAppStyle.dark_style_m);
   }
 
-  Widget _logoutButton() {
+  static Widget _logoutButton() {
     return IconButton(
       icon: Icon(Icons.exit_to_app),
       color: MovieAppColors.secondaryColor,

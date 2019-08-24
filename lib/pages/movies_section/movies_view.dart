@@ -21,7 +21,7 @@ class MoviesViewState extends State<MoviesView> {
   MoviesPresenter _presenter = MoviesPresenter();
   MoviesBloc _bloc = MoviesBloc();
   List<MovieCard> _cards = [];
-  AppBar _customAppBar = MovieAppBar().basicAppBar();
+  AppBar _customAppBar = MovieAppBar.basicAppBarWithLogout();
   MovieAppPageView _pageView = MovieAppPageView();
 
   void initState() {
