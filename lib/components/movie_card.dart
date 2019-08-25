@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/helpers/movie_info_helper.dart';
 import 'package:movie_app/infra/named_routes.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
@@ -33,7 +34,7 @@ class MovieCard extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Text(
-                    _resolveTitle(),
+                    MovieInfoHelper.resolveTitle(_movie),
                     style: MovieAppStyle.bright_style_s,
                   )
                 ],
@@ -46,25 +47,11 @@ class MovieCard extends StatelessWidget {
   Widget _fadeInImage() {
     return FadeInImage.assetNetwork(
         fadeInCurve: Curves.easeIn,
-        fadeOutDuration: Duration(seconds: 1),
+        fadeOutDuration: Duration(seconds: 2),
         placeholder: MovideAppTexts.movieDb_logo_square,
-        image: _resolvePoster(),
+        image: MovieInfoHelper.resolvePoster(_movie),
         height: MovieAppDimens.stack_300,
         alignment: Alignment.center,
         fit: BoxFit.cover);
-  }
-
-  dynamic _resolvePoster() {
-    if (_movie.getPoster() != null) {
-      return _movie.getPoster();
-    }
-    return null;
-  }
-
-  String _resolveTitle() {
-    if (_movie.title != null) {
-      return _movie.title;
-    }
-    return '';
   }
 }

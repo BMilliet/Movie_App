@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_app_appBar.dart';
+import 'package:movie_app/helpers/movie_info_helper.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 
@@ -34,7 +35,31 @@ class _DetailViewState extends State<DetailView> {
 
   Widget _informations() {
     return ListView(
-      children: <Widget>[_emptyContainer(400), _titles(), _overview()],
+      children: [
+        _favoriteIconRow(),
+        _emptyContainer(350),
+        _titles(),
+        _overview()
+      ],
+    );
+  }
+
+  Widget _favoriteIconRow() {
+    return Container(
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+            icon: Icon(
+              Icons.favorite_border,
+              size: 35,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
     );
   }
 
@@ -62,14 +87,14 @@ class _DetailViewState extends State<DetailView> {
   Widget _poster() {
     return Container(
         height: 600,
-        child: Image.network(_resolvePoster(),
+        child: Image.network(MovieInfoHelper.resolvePoster(widget._movie),
             alignment: Alignment.center, fit: BoxFit.cover));
   }
 
   Widget _titles() {
     return Container(
         child: Text(
-      _resolveTitle(),
+      MovieInfoHelper.resolveTitle(widget._movie),
       style: MovieAppStyle.bright_style_l,
     ));
   }
@@ -79,19 +104,5 @@ class _DetailViewState extends State<DetailView> {
         padding: EdgeInsets.only(top: 16),
         child:
             Text(widget._movie.overview, style: MovieAppStyle.bright_style_m));
-  }
-
-  dynamic _resolvePoster() {
-    if (widget._movie.getPoster() != null) {
-      return widget._movie.getPoster();
-    }
-    return null;
-  }
-
-  String _resolveTitle() {
-    if (widget._movie.title != null) {
-      return widget._movie.title;
-    }
-    return '';
   }
 }
