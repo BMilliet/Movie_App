@@ -9,6 +9,7 @@ import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 
+// ignore: must_be_immutable
 class MoviesView extends StatefulWidget {
   AllMovies _movies;
   MoviesView(this._movies);
