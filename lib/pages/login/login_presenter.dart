@@ -9,7 +9,7 @@ import 'package:movie_app/texts/movie_app_texts.dart';
 class LoginPresenter {
   final api = Api();
 
-  Future<AllMovies> _makeRequest({@required String key}) async {
+  dynamic _makeRequest({@required String key}) async {
     var url = UrlManager().trendingMovieUrl(key);
 
     try {

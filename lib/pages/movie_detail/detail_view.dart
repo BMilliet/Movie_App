@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/components/movie_app_appBar.dart';
 import 'package:movie_app/helpers/movie_info_helper.dart';
 import 'package:movie_app/models/movie.dart';
+import 'package:movie_app/pages/movie_detail/detail_bloc.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 
+// ignore: must_be_immutable
 class DetailView extends StatefulWidget {
   Movie _movie;
   DetailView(this._movie);
@@ -13,6 +15,7 @@ class DetailView extends StatefulWidget {
 
 class _DetailViewState extends State<DetailView> {
   Color _backGroundColor = Colors.black;
+  final _bloc = DetailBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +48,29 @@ class _DetailViewState extends State<DetailView> {
   }
 
   Widget _favoriteIconRow() {
-    return Container(
-      height: 50,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.favorite_border,
-              size: 35,
-              color: Colors.white,
-            ),
-            onPressed: () {},
-          )
-        ],
-      ),
+    return StreamBuilder(
+      stream: _bloc.iconData,
+      initialData: Icons.favorite_border,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return Container(
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                icon: Icon(
+                  snapshot.data,
+                  size: 35,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _bloc.switchIcon();
+                },
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 

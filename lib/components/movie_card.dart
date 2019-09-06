@@ -7,6 +7,7 @@ import 'package:movie_app/styles/movie_app_dimens.dart';
 import 'package:movie_app/styles/movie_app_style.dart';
 import 'package:movie_app/texts/movie_app_texts.dart';
 
+// ignore: must_be_immutable
 class MovieCard extends StatelessWidget {
   Movie _movie;
 
@@ -47,11 +48,11 @@ class MovieCard extends StatelessWidget {
   Widget _fadeInImage() {
     return FadeInImage.assetNetwork(
         fadeInCurve: Curves.easeIn,
-        fadeOutDuration: Duration(seconds: 2),
+        fadeOutDuration: Duration(seconds: 1),
         placeholder: MovideAppTexts.movieDb_logo_square,
         image: MovieInfoHelper.resolvePoster(_movie),
         height: MovieAppDimens.stack_300,
         alignment: Alignment.center,
-        fit: BoxFit.cover);
+        fit: BoxFit.fill);
   }
 }
