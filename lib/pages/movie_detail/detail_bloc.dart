@@ -18,4 +18,8 @@ class DetailBloc {
     }
     _inIconData.add(_iconData);
   }
+
+  void dispose() {
+    _iconDataStateController.close();
+  }
 }

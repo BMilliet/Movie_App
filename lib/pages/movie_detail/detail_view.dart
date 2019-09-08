@@ -116,4 +116,10 @@ class _DetailViewState extends State<DetailView> {
         child:
             Text(widget._movie.overview, style: MovieAppStyle.bright_style_m));
   }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
+  }
 }

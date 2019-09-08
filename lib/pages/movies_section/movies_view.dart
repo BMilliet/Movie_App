@@ -68,4 +68,10 @@ class MoviesViewState extends State<MoviesView> {
       _bloc.changePageViewState(_pageView);
     });
   }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
+  }
 }

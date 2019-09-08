@@ -12,4 +12,8 @@ class MoviesBloc {
     double pageValue = pageView.controller.page;
     _inCounter.add(pageValue);
   }
+
+  void dispose() {
+    _counterStateController.close();
+  }
 }
