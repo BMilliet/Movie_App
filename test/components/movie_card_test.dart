@@ -7,8 +7,7 @@ import '../test_helpers/json_mock.dart';
 void main() {
   final _json = JsonMock.moviesJson;
   final _movieMock = new Movie.fromJson(_json);
-  final _actionMock = () {};
-  final _movieCard = MovieCard(_movieMock, _actionMock);
+  final _movieCard = MovieCard(_movieMock);
 
   var _result;
   var _expected;

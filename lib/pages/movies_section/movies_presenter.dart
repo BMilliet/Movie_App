@@ -5,13 +5,9 @@ class MoviesPresenter {
   List<MovieCard> buildCards(AllMovies allMovies) {
     List<MovieCard> cards = [];
     for (var movie in allMovies.movies) {
-      final card = MovieCard(movie, _onTapAction);
+      final card = MovieCard(movie);
       cards.add(card);
     }
     return cards;
-  }
-
-  _onTapAction() {
-    print('tap on card');
   }
 }

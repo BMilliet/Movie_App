@@ -9,6 +9,7 @@ import 'package:movie_app/models/all_movies.dart';
 import 'package:movie_app/styles/movie_app_colors.dart';
 import 'package:movie_app/styles/movie_app_dimens.dart';
 
+// ignore: must_be_immutable
 class MoviesView extends StatefulWidget {
   AllMovies _movies;
   MoviesView(this._movies);
@@ -21,7 +22,7 @@ class MoviesViewState extends State<MoviesView> {
   MoviesPresenter _presenter = MoviesPresenter();
   MoviesBloc _bloc = MoviesBloc();
   List<MovieCard> _cards = [];
-  AppBar _customAppBar = MovieAppBar().basicAppBar();
+  AppBar _customAppBar = MovieAppBar.basicAppBarWithLogout();
   MovieAppPageView _pageView = MovieAppPageView();
 
   void initState() {
@@ -66,5 +67,11 @@ class MoviesViewState extends State<MoviesView> {
     _pageView.controller.addListener(() {
       _bloc.changePageViewState(_pageView);
     });
+  }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
   }
 }

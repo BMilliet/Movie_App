@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:movie_app/components/movie_card.dart';
 
+// ignore: must_be_immutable
 class MovieAppPageView extends PageView {
   PageController controller =
       PageController(viewportFraction: 0.45, initialPage: 0);
