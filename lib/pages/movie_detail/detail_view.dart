@@ -49,8 +49,12 @@ class _DetailViewState extends State<DetailView> {
 
   Widget _favoriteIconRow() {
     return StreamBuilder(
-      stream: _bloc.iconData,
-      initialData: Icons.favorite_border,
+      stream: _bloc.icon,
+      initialData: Icon(
+        Icons.favorite_border,
+        size: 35,
+        color: Colors.white,
+      ),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
           height: 50,
@@ -58,11 +62,7 @@ class _DetailViewState extends State<DetailView> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                icon: Icon(
-                  snapshot.data,
-                  size: 35,
-                  color: Colors.white,
-                ),
+                icon: snapshot.data,
                 onPressed: () {
                   _bloc.switchIcon();
                 },

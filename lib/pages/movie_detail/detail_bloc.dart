@@ -2,24 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movie_app/helpers/favorite_icon_manager.dart';
 
 class DetailBloc {
-  IconData _iconData = Icons.favorite_border;
-  final _iconDataStateController = StreamController<IconData>();
+  final FavoriteIconManager _favoriteIconManager = FavoriteIconManager();
+  final _iconStateController = StreamController<Icon>();
 
-  StreamSink<IconData> get _inIconData => _iconDataStateController.sink;
-  Stream<IconData> get iconData => _iconDataStateController.stream;
+  StreamSink<Icon> get _inIcon => _iconStateController.sink;
+  Stream<Icon> get icon => _iconStateController.stream;
 
   void switchIcon() {
-    if (_iconData == Icons.favorite_border) {
-      _iconData = Icons.favorite;
-    } else {
-      _iconData = Icons.favorite_border;
-    }
-    _inIconData.add(_iconData);
+    _favoriteIconManager.switchIcon();
+    _inIcon.add(_favoriteIconManager.icon);
   }
 
   void dispose() {
-    _iconDataStateController.close();
+    _iconStateController.close();
   }
 }
